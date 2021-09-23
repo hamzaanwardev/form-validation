@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+
+:root {
+    --color-success: #2ecc71;
+    --color-error: #e74c3c;
+}
+
 * {
    
     box-sizing: border-box;
@@ -43,4 +49,41 @@ h2 {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+.form-control.success {
+    border: 2px solid var(--color-success);
+}
+
+.form-control.error {
+    border: 2px solid var(--color-error);
+}
+
+small {
+    color: var(--color-error);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+.form button {
+    background-color: #3498db;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin: 20px;
+    width: 100%;
 }
