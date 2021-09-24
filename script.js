@@ -18,10 +18,28 @@ function showError(input, message) {
 
     
 
-    function checkRequiredFields(input) {
+    function checkRequired(inputArr) {
         inputArr.forEach(function (input) {
-                console.log(input.value);
+                if (input.value.trim() === '') {
+                    showError(input, `${getFieldName(input)} is required`);
+                } else {
+                    showSuccess(input);
+                }
         });
+    }
+
+    function checkLength (input, min, max) {
+        if(input.value.length < min) {
+            showError (input, `${getFieldName(input)} must be atleast ${min} characters`)
+        } else if(input.value.length > max) {
+            showError (input, `${getFieldName(input)} must be less than ${max} characters`)
+        } else {
+            showSuccess (input);
+        }
+    }
+
+    function getFieldName(input) {
+        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
     }
 
 
@@ -34,35 +52,7 @@ function showSuccess(input) {
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if(username.value === '' ) {
-        showError(username, 'Username is required');
-    } else {
-        showSuccess(username);
-    }
-    console.log(username.value)
-
-    console.log(email.value);
-    console.log(password.value);
-    console.log(password2.value);
-
-    if (email.value === '' ) {
-        showError(email, 'Email is Required');
-    } else if (!isValidEmail(email.value)) {
-        showError(email, 'Email is not Valid'); 
-    } 
-    else {
-        showSuccess(email);
-    }
-
-    if (password.value === '' ) {
-        showError (password, 'Password is Required');
-    } else {
-        showSuccess (password);
-    }
-
-    if (password2.value === '' ) {
-        showError (password2, 'Password 2 is Required');
-    } else {
-        showSuccess (password2);
-    }
+    checkRequired([username, email, password, password2]);
+    checkLength(username, 3, 15);
+    checkLength(password, 6, 25)
 });
