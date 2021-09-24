@@ -55,11 +55,11 @@ h2 {
 }
 
 
-.form-control.success {
+.form-control.success input {
     border: 2px solid var(--color-success);
 }
 
-.form-control.error {
+.form-control.error input {
     border: 2px solid var(--color-error);
 }
 
